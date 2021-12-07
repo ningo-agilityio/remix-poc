@@ -23,4 +23,4 @@ yarn dev
 - View app via localhost:3000
 
 ### Deploy site:
-...Coming soon
+[remix-poc.vercel.app](remix-poc.vercel.app)
