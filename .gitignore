@@ -6,4 +6,5 @@ node_modules
 
 public/build
 api/build/
+api/build
 build/
