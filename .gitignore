@@ -2,9 +2,6 @@ node_modules
 
 .cache
 .vercel
+.output
 
 public/build
-api/_assets
-api/assets.json
-api/index.js.map
-api/index.js
