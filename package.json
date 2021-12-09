@@ -4,8 +4,8 @@
   "description": "",
   "license": "",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
+    "build": "remix build && ./scripts/after-build.sh",
+    "dev": "remix dev && ./scripts/after-build.sh",
     "postinstall": "remix setup node"
   },
   "dependencies": {
