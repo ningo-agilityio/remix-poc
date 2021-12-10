@@ -8,7 +8,7 @@ module.exports = {
   serverBuildDirectory: "api/build",
   routes(defineRoutes) {
     return defineRoutes(route => {
-      route("api/build/posts-data/*", "api/posts-data");
+      route("api/build/posts-data/*", "./posts-data");
     });
   }
 };
