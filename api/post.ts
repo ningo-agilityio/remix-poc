@@ -28,8 +28,7 @@ function isValidPostAttributes(
 }
 
 // relative to the server output not the source!
-// const postsPath = path.join(__dirname, ".", "./posts");
-const postsPath = path.join(__dirname, '_files', "./posts");
+const postsPath = path.join(__dirname, ".", "./posts");
 
 export async function getPosts() {
   if (!fsCore.existsSync(postsPath)) {

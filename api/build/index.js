@@ -133,7 +133,11 @@ function Layout({ children }) {
     className: "remix-app__header-nav"
   }, /* @__PURE__ */ React.createElement("ul", null, /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_remix2.Link, {
     to: "/"
-  }, "Home")))))), /* @__PURE__ */ React.createElement("div", {
+  }, "Home")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_remix2.Link, {
+    to: "/posts"
+  }, "Blogs")), /* @__PURE__ */ React.createElement("li", null, /* @__PURE__ */ React.createElement(import_remix2.Link, {
+    to: "/admin"
+  }, "Admin")))))), /* @__PURE__ */ React.createElement("div", {
     className: "remix-app__main"
   }, /* @__PURE__ */ React.createElement("div", {
     className: "container remix-app__main-content"
@@ -376,9 +380,10 @@ __export(slug_exports, {
 });
 var import_remix9 = __toModule(require("remix"));
 
-// app/post.ts
+// api/post.ts
 var import_path = __toModule(require("path"));
 var import_promises = __toModule(require("fs/promises"));
+var import_fs = __toModule(require("fs"));
 var import_front_matter = __toModule(require("front-matter"));
 var import_tiny_invariant = __toModule(require("tiny-invariant"));
 var import_marked = __toModule(require("marked"));
@@ -387,6 +392,9 @@ function isValidPostAttributes(attributes) {
 }
 var postsPath = import_path.default.join(__dirname, ".", "./posts");
 async function getPosts() {
+  if (!import_fs.default.existsSync(postsPath)) {
+    import_fs.default.mkdirSync(postsPath, 484);
+  }
   const dir = await import_promises.default.readdir(postsPath);
   return Promise.all(dir.map(async (filename) => {
     const file = await import_promises.default.readFile(import_path.default.join(postsPath, filename));
@@ -405,6 +413,15 @@ async function getPost(slug) {
   (0, import_tiny_invariant.default)(isValidPostAttributes(attributes), `Post ${filepath} is missing attributes`);
   const html = (0, import_marked.marked)(body);
   return { slug, html, title: attributes.title };
+}
+async function createPost(post) {
+  const md = `---
+title: ${post.title}
+---
+
+${post.markdown}`;
+  await import_promises.default.writeFile(import_path.default.join(postsPath, post.slug + ".md"), md);
+  return getPost(post.slug);
 }
 
 // route-module:/Users/ningo/self-training/vercel-remix/app/routes/posts/$slug.tsx
@@ -439,15 +456,111 @@ function Posts() {
   }, post.title)))));
 }
 
+// route-module:/Users/ningo/self-training/vercel-remix/app/routes/admin.tsx
+var admin_exports = {};
+__export(admin_exports, {
+  default: () => Admin,
+  links: () => links3,
+  loader: () => loader4
+});
+var import_remix11 = __toModule(require("remix"));
+
+// app/styles/admin.css
+var admin_default = "/build/_assets/admin-MN44LWAP.css";
+
+// route-module:/Users/ningo/self-training/vercel-remix/app/routes/admin.tsx
+var links3 = () => {
+  return [{ rel: "stylesheet", href: admin_default }];
+};
+var loader4 = () => {
+  return getPosts();
+};
+function Admin() {
+  const posts = (0, import_remix11.useLoaderData)();
+  return /* @__PURE__ */ React.createElement("div", {
+    className: "admin"
+  }, /* @__PURE__ */ React.createElement("nav", null, /* @__PURE__ */ React.createElement("h1", null, "Admin"), /* @__PURE__ */ React.createElement("ul", null, posts.map((post) => /* @__PURE__ */ React.createElement("li", {
+    key: post.slug
+  }, /* @__PURE__ */ React.createElement(import_remix11.Link, {
+    to: `/posts/${post.slug}`
+  }, post.title))))), /* @__PURE__ */ React.createElement("main", null, /* @__PURE__ */ React.createElement(import_remix11.Outlet, null)));
+}
+
+// route-module:/Users/ningo/self-training/vercel-remix/app/routes/admin/index.tsx
+var admin_exports2 = {};
+__export(admin_exports2, {
+  default: () => AdminIndex
+});
+var import_remix12 = __toModule(require("remix"));
+function AdminIndex() {
+  return /* @__PURE__ */ React.createElement("p", null, /* @__PURE__ */ React.createElement(import_remix12.Link, {
+    to: "new"
+  }, "Create a New Post"));
+}
+
+// route-module:/Users/ningo/self-training/vercel-remix/app/routes/admin/new.tsx
+var new_exports = {};
+__export(new_exports, {
+  action: () => action2,
+  default: () => NewPost
+});
+var import_remix13 = __toModule(require("remix"));
+var import_tiny_invariant3 = __toModule(require("tiny-invariant"));
+var action2 = async ({ request }) => {
+  await new Promise((res) => setTimeout(res, 1e3));
+  const formData = await request.formData();
+  const title = formData.get("title");
+  const slug = formData.get("slug");
+  const markdown = formData.get("markdown");
+  const errors = {};
+  if (!title) {
+    errors.title = true;
+  }
+  if (!slug) {
+    errors.slug = true;
+  }
+  if (!markdown) {
+    errors.markdown = true;
+  }
+  (0, import_tiny_invariant3.default)(typeof title === "string");
+  (0, import_tiny_invariant3.default)(typeof slug === "string");
+  (0, import_tiny_invariant3.default)(typeof markdown === "string");
+  if (Object.keys(errors).length) {
+    return errors;
+  }
+  await createPost({ title, slug, markdown });
+  return (0, import_remix13.redirect)("/admin");
+};
+function NewPost() {
+  const errors = (0, import_remix13.useActionData)();
+  const transition = (0, import_remix13.useTransition)();
+  return /* @__PURE__ */ React.createElement(import_remix13.Form, {
+    method: "post"
+  }, /* @__PURE__ */ React.createElement("p", null, /* @__PURE__ */ React.createElement("label", null, "Post Title:", " ", (errors == null ? void 0 : errors.title) && /* @__PURE__ */ React.createElement("em", null, "Title is required"), /* @__PURE__ */ React.createElement("input", {
+    type: "text",
+    name: "title"
+  }))), /* @__PURE__ */ React.createElement("p", null, /* @__PURE__ */ React.createElement("label", null, "Post Slug:", " ", (errors == null ? void 0 : errors.slug) && /* @__PURE__ */ React.createElement("em", null, "Slug is required"), /* @__PURE__ */ React.createElement("input", {
+    type: "text",
+    name: "slug"
+  }))), /* @__PURE__ */ React.createElement("p", null, /* @__PURE__ */ React.createElement("label", {
+    htmlFor: "markdown"
+  }, "Markdown:"), " ", (errors == null ? void 0 : errors.markdown) && /* @__PURE__ */ React.createElement("em", null, "Markdown is required"), /* @__PURE__ */ React.createElement("br", null), /* @__PURE__ */ React.createElement("textarea", {
+    rows: 20,
+    name: "markdown"
+  })), /* @__PURE__ */ React.createElement("p", null, /* @__PURE__ */ React.createElement("button", {
+    type: "submit"
+  }, transition.submission ? "Creating..." : "Create Post")));
+}
+
 // route-module:/Users/ningo/self-training/vercel-remix/app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
   default: () => Index2,
-  loader: () => loader4,
+  loader: () => loader5,
   meta: () => meta5
 });
-var import_remix11 = __toModule(require("remix"));
-var loader4 = () => {
+var import_remix14 = __toModule(require("remix"));
+var loader5 = () => {
   let data = {
     resources: [],
     demos: [
@@ -458,10 +571,14 @@ var loader4 = () => {
       {
         to: "posts",
         name: "Blogs"
+      },
+      {
+        to: "admin",
+        name: "Admin"
       }
     ]
   };
-  return (0, import_remix11.json)(data);
+  return (0, import_remix14.json)(data);
 };
 var meta5 = () => {
   return {
@@ -470,16 +587,9 @@ var meta5 = () => {
   };
 };
 function Index2() {
-  let data = (0, import_remix11.useLoaderData)();
   return /* @__PURE__ */ React.createElement("div", {
     className: "remix__page"
-  }, /* @__PURE__ */ React.createElement("main", null, /* @__PURE__ */ React.createElement("h2", null, "Demos In This App"), /* @__PURE__ */ React.createElement("ul", null, data.demos.map((demo) => /* @__PURE__ */ React.createElement("li", {
-    key: demo.to,
-    className: "remix__page__resource"
-  }, /* @__PURE__ */ React.createElement(import_remix11.Link, {
-    to: demo.to,
-    prefetch: "intent"
-  }, demo.name))))));
+  }, /* @__PURE__ */ React.createElement("main", null, /* @__PURE__ */ React.createElement("h2", null, "Demos In This App")));
 }
 
 // <stdin>
@@ -573,6 +683,30 @@ var routes = {
     index: true,
     caseSensitive: void 0,
     module: posts_exports
+  },
+  "routes/admin": {
+    id: "routes/admin",
+    parentId: "root",
+    path: "admin",
+    index: void 0,
+    caseSensitive: void 0,
+    module: admin_exports
+  },
+  "routes/admin/index": {
+    id: "routes/admin/index",
+    parentId: "routes/admin",
+    path: void 0,
+    index: true,
+    caseSensitive: void 0,
+    module: admin_exports2
+  },
+  "routes/admin/new": {
+    id: "routes/admin/new",
+    parentId: "routes/admin",
+    path: "new",
+    index: void 0,
+    caseSensitive: void 0,
+    module: new_exports
   },
   "routes/index": {
     id: "routes/index",

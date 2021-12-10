@@ -1,27 +1,57 @@
 {
-  "version": "51a8792a",
+  "version": "f5703a3f",
   "entry": {
-    "module": "/build/entry.client-7HIW2GSJ.js",
+    "module": "/build/entry.client-JZRYRT54.js",
     "imports": [
-      "/build/_shared/chunk-BYVPAFZF.js",
-      "/build/_shared/chunk-AKSB5QXU.js"
+      "/build/_shared/chunk-WQEHX5UA.js",
+      "/build/_shared/chunk-E7VMOUYL.js"
     ]
   },
   "routes": {
     "root": {
       "id": "root",
       "path": "",
-      "module": "/build/root-E2SP7MZC.js",
+      "module": "/build/root-FDAHTUOK.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": true,
       "hasErrorBoundary": true
     },
+    "routes/admin": {
+      "id": "routes/admin",
+      "parentId": "root",
+      "path": "admin",
+      "module": "/build/routes/admin-BVOWUYSY.js",
+      "hasAction": false,
+      "hasLoader": true,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/admin/index": {
+      "id": "routes/admin/index",
+      "parentId": "routes/admin",
+      "index": true,
+      "module": "/build/routes/admin/index-6EMNTGSQ.js",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/admin/new": {
+      "id": "routes/admin/new",
+      "parentId": "routes/admin",
+      "path": "new",
+      "module": "/build/routes/admin/new-5HMQ6SMQ.js",
+      "hasAction": true,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
     "routes/demos/about": {
       "id": "routes/demos/about",
       "parentId": "root",
       "path": "demos/about",
-      "module": "/build/routes/demos/about-AI4G6I2M.js",
+      "module": "/build/routes/demos/about-GV6YH53J.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -31,7 +61,7 @@
       "id": "routes/demos/about/index",
       "parentId": "routes/demos/about",
       "index": true,
-      "module": "/build/routes/demos/about/index-2RJDTOTV.js",
+      "module": "/build/routes/demos/about/index-NG45GMFA.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -41,7 +71,7 @@
       "id": "routes/demos/about/whoa",
       "parentId": "routes/demos/about",
       "path": "whoa",
-      "module": "/build/routes/demos/about/whoa-3ZBTZM62.js",
+      "module": "/build/routes/demos/about/whoa-AACTFTIZ.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -51,7 +81,7 @@
       "id": "routes/demos/actions",
       "parentId": "root",
       "path": "demos/actions",
-      "module": "/build/routes/demos/actions-FYRO6LTC.js",
+      "module": "/build/routes/demos/actions-SAXLUSO5.js",
       "hasAction": true,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -61,7 +91,7 @@
       "id": "routes/demos/correct",
       "parentId": "root",
       "path": "demos/correct",
-      "module": "/build/routes/demos/correct-BYO2Q4OW.js",
+      "module": "/build/routes/demos/correct-FOF23WK5.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -71,7 +101,7 @@
       "id": "routes/demos/params",
       "parentId": "root",
       "path": "demos/params",
-      "module": "/build/routes/demos/params-UZXJ5TTJ.js",
+      "module": "/build/routes/demos/params-2KLJUSHH.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -81,7 +111,7 @@
       "id": "routes/demos/params/$id",
       "parentId": "routes/demos/params",
       "path": ":id",
-      "module": "/build/routes/demos/params/$id-MEAIIPML.js",
+      "module": "/build/routes/demos/params/$id-WMRHWAVF.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": true,
@@ -91,7 +121,7 @@
       "id": "routes/demos/params/index",
       "parentId": "routes/demos/params",
       "index": true,
-      "module": "/build/routes/demos/params/index-GI7CBNT6.js",
+      "module": "/build/routes/demos/params/index-AGJLZWVI.js",
       "hasAction": false,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -101,7 +131,7 @@
       "id": "routes/index",
       "parentId": "root",
       "index": true,
-      "module": "/build/routes/index-X3KRLVDC.js",
+      "module": "/build/routes/index-LIJ23DAU.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
@@ -111,7 +141,7 @@
       "id": "routes/posts/$slug",
       "parentId": "root",
       "path": "posts/:slug",
-      "module": "/build/routes/posts/$slug-Y3AH3R7N.js",
+      "module": "/build/routes/posts/$slug-SUNMTXT4.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
@@ -122,12 +152,12 @@
       "parentId": "root",
       "path": "posts",
       "index": true,
-      "module": "/build/routes/posts/index-RFHBY2UP.js",
+      "module": "/build/routes/posts/index-HIOQIOAJ.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
       "hasErrorBoundary": false
     }
   },
-  "url": "/build/manifest-51A8792A.js"
+  "url": "/build/manifest-F5703A3F.js"
 }
