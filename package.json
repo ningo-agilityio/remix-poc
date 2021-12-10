@@ -4,8 +4,8 @@
   "description": "",
   "license": "",
   "scripts": {
-    "prebuild": "remix build",
-    "build": "./scripts/after-build.sh",
+    "build": "remix build",
+    "copy-assets": "./scripts/after-build.sh",
     "dev": "remix dev",
     "postinstall": "remix setup node"
   },
