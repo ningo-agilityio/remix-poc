@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/post.ts": {
+      "includeFiles": "_files/**"
+    }
+  },
   "build": {
     "env": {
       "ENABLE_FILE_SYSTEM_API": "1"
