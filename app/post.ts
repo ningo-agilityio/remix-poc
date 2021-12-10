@@ -28,16 +28,13 @@ function isValidPostAttributes(
 }
 
 // relative to the server output not the source!
-const postsPath = path.join(__dirname, ".", "./posts");
+const postsPath = path.join(__dirname, ".", "./posts-data");
 
 export async function getPosts() {
-  if (!fsCore.existsSync(postsPath)) {
-    // Create folder
-    fsCore.mkdirSync(postsPath, 0o744);
-  }
   const dir = await fs.readdir(postsPath);
   return Promise.all(
     dir.map(async filename => {
+      console.log(filename)
       const file = await fs.readFile(
         path.join(postsPath, filename)
       );

@@ -390,21 +390,19 @@ var import_marked = __toModule(require("marked"));
 function isValidPostAttributes(attributes) {
   return attributes == null ? void 0 : attributes.title;
 }
-var postsPath = import_path.default.join(__dirname, ".", "./posts");
+var postsPath = import_path.default.join(__dirname, ".");
 async function getPosts() {
-  if (!import_fs.default.existsSync(postsPath)) {
-    import_fs.default.mkdirSync(postsPath, 484);
-  }
-  const dir = await import_promises.default.readdir(postsPath);
-  return Promise.all(dir.map(async (filename) => {
-    const file = await import_promises.default.readFile(import_path.default.join(postsPath, filename));
+  let files = [];
+  import_fs.default.readdirSync(postsPath).forEach((file) => {
+    console.log(file);
     const { attributes } = (0, import_front_matter.default)(file.toString());
-    (0, import_tiny_invariant.default)(isValidPostAttributes(attributes), `${filename} has bad meta data!`);
-    return {
-      slug: filename.replace(/\.md$/, ""),
+    (0, import_tiny_invariant.default)(isValidPostAttributes(attributes), `${file} has bad meta data!`);
+    files.push({
+      slug: file.replace(/\.md$/, ""),
       title: attributes.title
-    };
-  }));
+    });
+  });
+  return files;
 }
 async function getPost(slug) {
   const filepath = import_path.default.join(postsPath, slug + ".md");

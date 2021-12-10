@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/posts-data",
+      "destination": "/api/posts-data"
+    }
+  ],
   "build": {
     "env": {
       "ENABLE_FILE_SYSTEM_API": "1"
