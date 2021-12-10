@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/posts-data",
+      "source": "api/build/posts-data",
       "destination": "/api/posts-data"
     }
   ],

@@ -1,5 +1,5 @@
 {
-  "version": "f5703a3f",
+  "version": "f787ed1a",
   "entry": {
     "module": "/build/entry.client-JZRYRT54.js",
     "imports": [
@@ -21,7 +21,7 @@
       "id": "routes/admin",
       "parentId": "root",
       "path": "admin",
-      "module": "/build/routes/admin-BVOWUYSY.js",
+      "module": "/build/routes/admin-OKXVKOYE.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
@@ -41,7 +41,7 @@
       "id": "routes/admin/new",
       "parentId": "routes/admin",
       "path": "new",
-      "module": "/build/routes/admin/new-5HMQ6SMQ.js",
+      "module": "/build/routes/admin/new-NRDS26BQ.js",
       "hasAction": true,
       "hasLoader": false,
       "hasCatchBoundary": false,
@@ -141,7 +141,7 @@
       "id": "routes/posts/$slug",
       "parentId": "root",
       "path": "posts/:slug",
-      "module": "/build/routes/posts/$slug-SUNMTXT4.js",
+      "module": "/build/routes/posts/$slug-6LCD4YAG.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
@@ -152,12 +152,12 @@
       "parentId": "root",
       "path": "posts",
       "index": true,
-      "module": "/build/routes/posts/index-HIOQIOAJ.js",
+      "module": "/build/routes/posts/index-CA34D5IM.js",
       "hasAction": false,
       "hasLoader": true,
       "hasCatchBoundary": false,
       "hasErrorBoundary": false
     }
   },
-  "url": "/build/manifest-F5703A3F.js"
+  "url": "/build/manifest-F787ED1A.js"
 }

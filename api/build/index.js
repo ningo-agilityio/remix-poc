@@ -380,29 +380,28 @@ __export(slug_exports, {
 });
 var import_remix9 = __toModule(require("remix"));
 
-// api/post.ts
+// app/post.ts
 var import_path = __toModule(require("path"));
 var import_promises = __toModule(require("fs/promises"));
-var import_fs = __toModule(require("fs"));
 var import_front_matter = __toModule(require("front-matter"));
 var import_tiny_invariant = __toModule(require("tiny-invariant"));
 var import_marked = __toModule(require("marked"));
 function isValidPostAttributes(attributes) {
   return attributes == null ? void 0 : attributes.title;
 }
-var postsPath = import_path.default.join(__dirname, ".");
+var postsPath = import_path.default.join(__dirname, ".", "./posts-data");
 async function getPosts() {
-  let files = [];
-  import_fs.default.readdirSync(postsPath).forEach((file) => {
-    console.log(file);
+  const dir = await import_promises.default.readdir(postsPath);
+  return Promise.all(dir.map(async (filename) => {
+    console.log(filename);
+    const file = await import_promises.default.readFile(import_path.default.join(postsPath, filename));
     const { attributes } = (0, import_front_matter.default)(file.toString());
-    (0, import_tiny_invariant.default)(isValidPostAttributes(attributes), `${file} has bad meta data!`);
-    files.push({
-      slug: file.replace(/\.md$/, ""),
+    (0, import_tiny_invariant.default)(isValidPostAttributes(attributes), `${filename} has bad meta data!`);
+    return {
+      slug: filename.replace(/\.md$/, ""),
       title: attributes.title
-    });
-  });
-  return files;
+    };
+  }));
 }
 async function getPost(slug) {
   const filepath = import_path.default.join(postsPath, slug + ".md");
