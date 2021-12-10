@@ -22,6 +22,10 @@ export let loader: LoaderFunction = () => {
         to: "posts",
         name: "Blogs"
       },
+      {
+        to: "admin",
+        name: "Admin"
+      },
     ]
   };
 
@@ -39,21 +43,10 @@ export let meta: MetaFunction = () => {
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
-  let data = useLoaderData<IndexData>();
-
   return (
     <div className="remix__page">
       <main>
         <h2>Demos In This App</h2>
-        <ul>
-          {data.demos.map(demo => (
-            <li key={demo.to} className="remix__page__resource">
-              <Link to={demo.to} prefetch="intent">
-                {demo.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </main>
     </div>
   );
