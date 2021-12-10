@@ -33,7 +33,7 @@ const postsPath = path.join(__dirname, ".", "./posts");
 export async function getPosts() {
   if (!fsCore.existsSync(postsPath)) {
     // Create folder
-    fsCore.mkdirSync(postsPath, '0o744');
+    fsCore.mkdirSync(postsPath, 0o744);
   }
   const dir = await fs.readdir(postsPath);
   return Promise.all(
