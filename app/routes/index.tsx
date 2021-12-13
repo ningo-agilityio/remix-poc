@@ -12,33 +12,20 @@ type IndexData = {
 // https://remix.run/api/conventions#loader
 export let loader: LoaderFunction = () => {
   let data: IndexData = {
-    resources: [
-      {
-        name: "Remix Docs",
-        url: "https://remix.run/docs"
-      },
-      {
-        name: "React Router Docs",
-        url: "https://reactrouter.com/docs"
-      },
-      {
-        name: "Remix Discord",
-        url: "https://discord.gg/VBePs6d"
-      }
-    ],
+    resources: [],
     demos: [
       {
         to: "demos/actions",
         name: "Actions"
       },
       {
-        to: "demos/about",
-        name: "Nested Routes, CSS loading/unloading"
+        to: "posts",
+        name: "Blogs"
       },
       {
-        to: "demos/params",
-        name: "URL Params and Error Boundaries"
-      }
+        to: "admin",
+        name: "Admin"
+      },
     ]
   };
 
@@ -56,12 +43,10 @@ export let meta: MetaFunction = () => {
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
-  let data = useLoaderData<IndexData>();
-
   return (
     <div className="remix__page">
       <main>
-        <h2>Welcome to Remix!</h2>
+        <h2>Demos In This App</h2>
       </main>
     </div>
   );

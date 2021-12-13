@@ -131,7 +131,6 @@ function Layout({ children }: { children: React.ReactNode }) {
             <ul>
               <li>
                 <Link to="/">Home</Link>
-
               </li>
               <li>
                 <Link to="/posts">Blogs</Link>
@@ -146,11 +145,6 @@ function Layout({ children }: { children: React.ReactNode }) {
       <div className="remix-app__main">
         <div className="container remix-app__main-content">{children}</div>
       </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content">
-          <p>&copy; 2021 Ni Ngo Remix-poc</p>
-        </div>
-      </footer>
     </div>
   );
 }
