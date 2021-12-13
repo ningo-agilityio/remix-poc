@@ -13,20 +13,7 @@ type IndexData = {
 export let loader: LoaderFunction = () => {
   let data: IndexData = {
     resources: [],
-    demos: [
-      {
-        to: "demos/actions",
-        name: "Actions"
-      },
-      {
-        to: "posts",
-        name: "Blogs"
-      },
-      {
-        to: "admin",
-        name: "Admin"
-      },
-    ]
+    demos: []
   };
 
   // https://remix.run/api/remix#json
