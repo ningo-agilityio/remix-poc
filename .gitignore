@@ -5,3 +5,7 @@ node_modules
 .output
 
 public/build
+api/build
+
+/prisma/dev.db
+.env

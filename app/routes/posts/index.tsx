@@ -1,9 +1,13 @@
 import { Link, useLoaderData } from "remix";
-import { getPosts } from "../../post";
-import type { Post } from "../../post";
+import type { Post } from "@prisma/client";
+import { db } from "~/utils/db.server";
 
-export const loader = () => {
-  return getPosts();
+type LoaderData = { posts: Array<Post> };
+export const loader = async () => {
+  const data: LoaderData = {
+    posts: await db.post.findMany()
+  };
+  return { data };
 };
 
 export default function Posts() {
