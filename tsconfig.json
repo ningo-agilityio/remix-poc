@@ -2,8 +2,7 @@
   "include": [
     "remix.env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
-    "api/post.ts"
+    "**/*.tsx"
   ],
   "compilerOptions": {
     "lib": [

@@ -3,15 +3,5 @@
     "env": {
       "ENABLE_FILE_SYSTEM_API": "1"
     }
-  },
-  "functions": {
-    "api/post.ts": {
-      "includeFiles": [
-        "posts-data/90s-mixtape.md",
-        "posts-data/This weekend.md",
-        "posts-data/hello-world.md",
-        "posts-data/my-first-post.md"
-      ]
-    }
   }
 }
