@@ -42,16 +42,20 @@ const postsPath = path.join(__dirname, "..")
 
 const normalizePost = async (data: any[]) => {
   const posts: Post[] = [];
+
   const promises = data.map(async (filename: any) => {
     const key = (filename as any).Key
     const file = await new S3().getObject({ Bucket: BUCKET_NAME, Key: key }).promise();
     const body = Buffer.from((file as any).Body).toString('utf8');
+
     const { attributes } = parseFrontMatter(
       body.toString()
     );
+
     if (!(attributes as any).title) {
       return
     }
+
     posts.push({
       slug: key.replace(`${FOLDER_NAME}/`, "").replace(/\.md$/, ""),
       title: (attributes as any).title,
@@ -91,7 +95,7 @@ export async function getPost(slug: string) {
 }
 
 export async function createPost(post: NewPost) {
-  const md = `-- -\ntitle: ${post.title}\n-- -\n\n${post.markdown}`;
+  const md = `---\ntitle: ${post.title}\n---\n\n${post.markdown}`;
   let params = {
     Bucket: BUCKET_NAME,
     Key: `${FOLDER_NAME}/${post.slug}.md`,
