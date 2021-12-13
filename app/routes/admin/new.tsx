@@ -1,7 +1,7 @@
 import { redirect, Form, useActionData, useTransition } from "remix";
-import { createPost } from "../../post";
+import { createPost } from "../../../api/post";
 import type { ActionFunction } from "remix";
-import type { NewPost } from "../../post";
+import type { NewPost } from "../../../api/post";
 import invariant from "tiny-invariant";
 
 type PostError = {

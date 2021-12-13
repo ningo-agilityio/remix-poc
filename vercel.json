@@ -4,10 +4,9 @@
       "ENABLE_FILE_SYSTEM_API": "1"
     }
   },
-  "files": [
-    {
-      "input": "../../posts-data",
-      "output": "posts-data"
+  "functions": {
+    "api/post.ts": {
+      "includeFiles": "posts-data/**"
     }
-  ]
+  }
 }

@@ -27,7 +27,7 @@ function isValidPostAttributes(
 }
 
 // relative to the server output not the source!
-const postsPath = path.join(__dirname, "../../../../", "posts-data");
+const postsPath = path.join(__dirname, "posts-data", "/*");
 
 export async function getPosts() {
   const dir = await fs.readdir(postsPath);

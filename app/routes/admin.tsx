@@ -1,6 +1,6 @@
 import { Outlet, Link, useLoaderData } from "remix";
-import { getPosts } from "../post";
-import type { Post } from "../post";
+import { getPosts } from "../../api/post";
+import type { Post } from "../../api/post";
 
 import adminStyles from "~/styles/admin.css";
 
