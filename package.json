@@ -4,6 +4,7 @@
   "description": "",
   "license": "",
   "scripts": {
+    "prebuild": "npm root -g",
     "build": "remix build",
     "copy-assets": "./scripts/after-build.sh",
     "dev": "remix dev",

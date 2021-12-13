@@ -391,14 +391,12 @@ function isValidPostAttributes(attributes) {
   return attributes == null ? void 0 : attributes.title;
 }
 var postsPath = import_path.default.join(__dirname, "../../../../", "posts-data");
-console.log(postsPath);
 async function getPosts() {
   if (!import_fs.default.existsSync(postsPath)) {
     import_fs.default.mkdirSync(postsPath);
   }
   const dir = await import_promises.default.readdir(postsPath);
   return Promise.all(dir.map(async (filename) => {
-    console.log(filename);
     const file = await import_promises.default.readFile(import_path.default.join(postsPath, filename));
     const { attributes } = (0, import_front_matter.default)(file.toString());
     (0, import_tiny_invariant.default)(isValidPostAttributes(attributes), `${filename} has bad meta data!`);
