@@ -383,14 +383,19 @@ var import_remix9 = __toModule(require("remix"));
 // app/post.ts
 var import_path = __toModule(require("path"));
 var import_promises = __toModule(require("fs/promises"));
+var import_fs = __toModule(require("fs"));
 var import_front_matter = __toModule(require("front-matter"));
 var import_tiny_invariant = __toModule(require("tiny-invariant"));
 var import_marked = __toModule(require("marked"));
 function isValidPostAttributes(attributes) {
   return attributes == null ? void 0 : attributes.title;
 }
-var postsPath = import_path.default.join(__dirname, ".", "./posts-data");
+var postsPath = import_path.default.join(__dirname, "../../../../", "posts-data");
+console.log(postsPath);
 async function getPosts() {
+  if (!import_fs.default.existsSync(postsPath)) {
+    import_fs.default.mkdirSync(postsPath);
+  }
   const dir = await import_promises.default.readdir(postsPath);
   return Promise.all(dir.map(async (filename) => {
     console.log(filename);
