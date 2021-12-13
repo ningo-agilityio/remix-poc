@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "posts-data/**"
+    }
+  },
   "build": {
     "env": {
       "ENABLE_FILE_SYSTEM_API": "1"
