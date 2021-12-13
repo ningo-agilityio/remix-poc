@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/index.js": {
+    "api/post.ts": {
       "includeFiles": "posts-data/**"
     }
   },
