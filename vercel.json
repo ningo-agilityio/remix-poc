@@ -1,12 +1,13 @@
 {
-  "functions": {
-    "api/*.ts": {
-      "includeFiles": "posts-data/**"
-    }
-  },
   "build": {
     "env": {
       "ENABLE_FILE_SYSTEM_API": "1"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/posts-data/",
+      "destination": "../posts-data"
+    }
+  ]
 }
