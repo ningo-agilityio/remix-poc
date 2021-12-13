@@ -3,9 +3,9 @@ node_modules
 .cache
 .vercel
 .output
+.env
 
 public/build
 api/build/
 api/build
 build/
-.env
