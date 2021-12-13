@@ -28,28 +28,42 @@ function isValidPostAttributes(
 }
 
 // relative to the server output not the source!
-const postsPath = path.join(__dirname, "../../../../../../../", "posts-data")
+const postsPath = path.join(__dirname, "..")
 
 export async function getPosts() {
-  if (!fsCore.existsSync(postsPath)) {
-    fsCore.mkdirSync(postsPath);
-  }
+  // if (!fsCore.existsSync(postsPath)) {
+  //   fsCore.mkdirSync(postsPath);
+  // }
+
   const dir = await fs.readdir(postsPath);
+  const md = `---\ntitle: Hello world `;
+  await fs.writeFile(
+    path.join(postsPath, "hello-world.md"),
+    md
+  );
+
   return Promise.all(
     dir.map(async filename => {
-      const file = await fs.readFile(
-        path.join(postsPath, filename)
-      );
-      const { attributes } = parseFrontMatter(
-        file.toString()
-      );
-      invariant(
-        isValidPostAttributes(attributes),
-        `${filename} has bad meta data!`
-      );
-      return {
-        slug: filename.replace(/\.md$/, ""),
-        title: attributes.title
+      var stat = fsCore.lstatSync(filename);
+      if (stat.isDirectory()) {
+        return; //recurse
+      }
+      else if (filename.indexOf(".md") >= 0) {
+        console.log('-- found: ', filename);
+        const file = await fs.readFile(
+          path.join(postsPath, filename)
+        );
+        const { attributes } = parseFrontMatter(
+          file.toString()
+        );
+        invariant(
+          isValidPostAttributes(attributes),
+          `${filename} has bad meta data!`
+        );
+        return {
+          slug: filename.replace(/\.md$/, ""),
+          title: attributes.title
+        };
       };
     })
   );
